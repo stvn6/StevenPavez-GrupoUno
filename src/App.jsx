@@ -1,36 +1,47 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Footer from "../src/components/Footer/Footer.jsx"
-import Header from "../src/components/Header/Header.jsx"
+import React from 'react';
+import Navbar from './components/Navbar/Navbar.jsx';
+import Footer from './components/Footer/Footer.jsx';
 import Home from './components/Home/Home.jsx';
-import About from "./components/About/About.jsx"
-import Contact from "./components/Contact/Contact.jsx"
-import ProductsPage from "./components/Products/Products.jsx";
-import ItemDetail from "./components/ItemDetail/ItemDetail.jsx"
-import {Products} from "./components/Header/Menus.js";
+import Services from './components/Services/Services.jsx';
+import About from './components/About/About.jsx';
+import ContactPage from './components/Contact/Contact.jsx';
+import Products from './components/Products/Products.jsx';
 import ProductsCategory from "./components/Category/Category.jsx";
+import ItemDetail from "./components/ItemDetail/ItemDetail.jsx";
+import Cart from "./components/Cart/Cart.jsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-
-
-function App() {
+const App = () => {
+    React.useEffect(() => {
+        AOS.init({
+            offset: 100,
+            duration: 700,
+            easing: "ease-in",
+            delay: 100,
+        });
+        AOS.refresh();
+    }, []);
 
     return (
         <>
-        <BrowserRouter>
-            <section>
-            <Header/>
-            </section>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/category/:categoryId' element={<ProductsCategory />} />
-                <Route path='/products' element={<ProductsPage />} />
-                <Route path='/products/:productId' element={<ItemDetail />} />
-            </Routes>
-            <Footer />
-        </BrowserRouter>
+            <BrowserRouter>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path='/products/:productId' element={<ItemDetail />} />
+                    <Route path='/category/:categoryId' element={<ProductsCategory />} />
+                    <Route path="/cart" element={<Cart />} />
+                </Routes>
+                <Footer />
+            </BrowserRouter>
         </>
-    )
-}
-export default App
+    );
+};
+
+export default App;

@@ -1,10 +1,10 @@
-import ItemList from "../ItemList/ItemList.jsx";
-export default function ProductsPage() {
+import ItemList from "../ItemList/ItemList";
 
-    return (
-        <div className="py-20 container mx-auto">
+export default function Products(){
+
+    return(
+        <div className="container mx-auto max-w-[1170px]">
             <ItemList />
-
         </div>
     )
 }
